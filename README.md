@@ -26,21 +26,21 @@ As I learn gradually, I will implement more advanced and off-the-shelf tools. (f
 
 #### Available Events
 
-- `PostCreated`: When a post has been created.
+- `PostCreated`:
 -- `Publisher`: `Posts Service`
--- `Consumer`: 
+-- `Consumer`: `Query Service`
 
-- `CommentCreated`: 
+- `CommentCreated`:
 -- `Publisher`: `Comments Service`
--- `Consumer`: 
+-- `Consumer`: `Query Service` | `Moderation Service`
 
-- `CommentModerated`: 
--- `Publisher`:
--- `Consumer`: 
+- `CommentModerated`:
+-- `Publisher`: `Moderation Service`
+-- `Consumer`: `Comments Service`
 
-- `CommentUpdated`: 
--- `Publisher`:
--- `Consumer`: 
+- `CommentUpdated`:
+-- `Publisher`: `Comments Service`
+-- `Consumer`: `Query Service`
 
 #### Event Retry Mechanisms
 Currently, the retry mechanism for synchronizing event is done as follows:
