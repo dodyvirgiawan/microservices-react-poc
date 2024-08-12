@@ -1,4 +1,4 @@
-# Microservices with React, Node.js & Express.js (Event Driven Architecture)
+# Very Basic Microservices with React, Node.js & Express.js (Event Driven Architecture)
 
 This is a very basic proof-of-concept app for my learning in the implementation of event driven architecture for asynchronous communication between backend microservices.
 - Client is using React.js
