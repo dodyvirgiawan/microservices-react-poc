@@ -66,19 +66,21 @@ We don't directly create pod, however you can see `infra/k8s/old` folder on how 
 ##### 2. Deployment Object
 
 - Deployment: for managing pods.
-  - Resources that implement: `posts` `event-bus` `comments` `moderation` `query`
+  - Resources that implement: `posts` `event-bus` `comments` `moderation` `query` `client`
 
 ##### 3. Service Object
 
 - ClusterIP: for inter-pods communication
-  - Resources that implement:`posts` `event-bus` `comments` `moderation` `query`
+  - Resources that implement:`posts` `event-bus` `comments` `moderation` `query` `client
 
 - NodePort: for outside to pods communication
   - Resource that implement: `posts`
 
-##### 4. Ingress & Load Balancer
+##### 5. Others
+- We use `ingress-nginx` for load balancer & ingress services. To install [click here](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
+- For the client app (React.js), we also deploy into a separate pods.
 
-We use `ingress-nginx` for load balancer & ingress services. To install [click here](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
+####
 
 
 ### Notes

@@ -2,9 +2,9 @@
 
 ---
 
-### I. Creating a Pods via Kubernetes Deployment
+###  Creating a Pods via Kubernetes Deployment
 
-Why Kubernetes' `Deployment`
+Why Kubernetes `Deployment`
 - It can mantain the number of pods running (restart if any pod crashes, etc).
 - Gradual version release. If we release a new version, deployment will create pods with our new app version (in parallel with older version). Deployment will sunset the older version once it has been fully routed to the newest version.
 
@@ -33,9 +33,9 @@ Example for posts service:
 
 ---
 
-### II. Configuring Communication
+### Configuring Communication
 
-#### a. Communication between pods and outside access
+#### Communication between pods and outside access
 
 ##### Node Port Service
 Notes: 
@@ -47,12 +47,16 @@ Notes:
 
 To tell kubernetes to reach out to its provider and provision a load balancer.
 
+--
+
+In this app, we use ingress-nginx that acts as a Load Balancer and Ingress.
+
 ##### Ingress/Ingress Controller 
 
 A pod with a set of routing rules to distribute traffic to other services.
 
 
-#### b. Communication between each pods
+#### Communication between each pods
 
 ##### Cluster IP Service
 
