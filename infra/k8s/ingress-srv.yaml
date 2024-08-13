@@ -33,7 +33,7 @@ spec:
                   number: 4002
           # POST /posts/:id/comments
           - path: /posts/?(.*)/comments
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: comments-srv
@@ -41,7 +41,7 @@ spec:
                   number: 4001
           # Our react dev server
           - path: /?(.*)
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: client-srv

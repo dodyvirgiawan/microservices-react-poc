@@ -2,8 +2,6 @@
 FROM node:alpine
 
 # Related to github issue when hosting create react app inside docker container in a kubernetes cluster
-# https://github.com/facebook/create-react-app/issues/8688
-# https://github.com/facebook/create-react-app/issues/11779
 ENV CI=true
 ENV WDS_SOCKET_PORT=0
 
