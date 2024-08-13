@@ -7,7 +7,12 @@ const CommentCreate = ({ postId }) => {
   const onSubmit = async (event) => {
     event.preventDefault();
 
-    await axios.post(`http://localhost:4001/posts/${postId}/comments`, {
+    // ! This posts.com relates to this project flow where we:
+    // ! (1) Specify that posts.com to our ingress nginx config file to Kubernetes
+    // ! (2) Modify host config file in our Operating System
+
+    // ! TLDR; This posts.com will try to connect to our Kubernetes cluster, not real posts.com in the internet.
+    await axios.post(`http://posts.com/posts/${postId}/comments`, {
       content,
     });
 

@@ -3,6 +3,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: ingress-srv
+  # specify we use regex
+  annotations:
+    nginx.ingress.kubernetes.io/use-regex: "true"
 spec:
   # tell which ingress to use (ingress-nginx)
   ingressClassName: nginx
@@ -12,11 +15,35 @@ spec:
     - host: posts.com # this posts.com can be anything else, just to make sure we update the host file config in your OS system.
       http:
         paths:
-          # If outside access url path /posts, redirect to our posts cluster ip service
-          - path: /posts
+          # POST /posts/create -> to posts microservice
+          - path: /posts/create
             pathType: Prefix
             backend:
               service:
                 name: posts-clusterip-srv
                 port:
                   number: 4000
+          # GET /posts -> to query microservices
+          - path: /posts
+            pathType: Prefix
+            backend:
+              service:
+                name: query-srv
+                port:
+                  number: 4002
+          # POST /posts/:id/comments
+          - path: /posts/?(.*)/comments
+            pathType: Prefix
+            backend:
+              service:
+                name: comments-srv
+                port:
+                  number: 4001
+          # Our react dev server
+          - path: /?(.*)
+            pathType: Prefix
+            backend:
+              service:
+                name: client-srv
+                port:
+                  number: 3000

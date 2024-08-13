@@ -32,3 +32,19 @@ spec:
       protocol: TCP
       port: 4000
       targetPort: 4000
+
+---
+# Goal: create a Node Port Service for communication between posts pods to outside world
+apiVersion: v1
+kind: Service # a service object
+metadata: # specify the detail of the object (name)
+  name: posts-srv
+spec:
+  type: NodePort # node port service
+  selector: # telling node port to find pods with label "posts" and expose them
+    app: posts
+  ports:
+    - name: posts # for logging purpose, no need to be the actual name of the post service
+      protocol: TCP
+      port: 4000 # the port inside NodePort service
+      targetPort: 4000 # actual port our app is running on
