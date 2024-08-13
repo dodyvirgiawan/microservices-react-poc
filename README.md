@@ -2,7 +2,7 @@
 
 ---
 
-## Event Driven Architecture
+## Microservice, Event Driven Architecture
 
 
 This is a very basic proof-of-concept app for my learning in the implementation of event driven architecture for asynchronous communication between backend microservices.
@@ -48,8 +48,11 @@ Currently, the retry mechanism for synchronizing event is done as follows:
 - `Event Bus` will store all the events that has occured into their persisted state (for now, no DB, only memory).
 - If a `microservice` becomes offline, and becomes online again, it will `fetch all the events` that is stored inside `EventBus` store data, and evaluate each event one by one, ensuring consistency.
 
-
 ---
+
+### Deployments (Docker, Kubernetes)
+
+This app has an `infra` folder that host all the YML configuration file for creating docker image & kubernetes deployment. Please refer to the `README.md` file inside the `infra folder`.
 
 #### Notes
 - This is not a production grade code, as I don't implement best practice of microservices architecture just yet. Goal of this project aims to create a proof of concept of event-bus / event driven architecture.

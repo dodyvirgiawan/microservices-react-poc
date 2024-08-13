@@ -1,0 +1,9 @@
+# Goal: old version of creating pod directly (not recommended - use Deployment instead)
+apiVersion: v1 # look at default v1 k8s object we can pull.
+kind: Pod # from that v1, we create a pod (one type of object)
+metadata: # config options we about to create
+  name: posts # give the pod a name
+spec: # exact attributes we want to apply to the pod object
+  containers: # can create many containers in a single pod
+    - name: posts # make a container with name "posts"
+      image: dodyvirgiawan/posts:0.0.1 # the image we want to create from

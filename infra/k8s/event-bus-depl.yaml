@@ -1,0 +1,34 @@
+# Goal: create deployment to create pods for event bus service.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: event-bus-depl
+spec:
+  replicas: 1 # number of pods we want to create that running certain image
+  selector: # which pods that we want to replicate & manage
+    matchLabels:
+      app: event-bus
+  template: # specify the configuration of the pod
+    metadata: # the metadata for the selector matchLabels
+      labels:
+        app: event-bus
+    spec: # the image we want to run inside the container inside the pods
+      containers:
+        - name: event-bus
+          image: dodyvirgiawan/event-bus:latest
+
+---
+# Goal: Create a Cluster IP Service for event bus microservice (expose to other pods)
+apiVersion: v1
+kind: Service
+metadata:
+  name: event-bus-srv
+spec:
+  selector:
+    app: event-bus
+  type: ClusterIP
+  ports: 
+    - name: event-bus
+      protocol: TCP
+      port: 4005
+      targetPort: 4005

@@ -17,28 +17,29 @@ app.post("/events", (req, res) => {
   events.push(event);
 
   //! Broadcast to post service
-  axios.post("http://localhost:4000/events", event).catch((err) => {
+  axios.post("http://posts-clusterip-srv:4000/events", event).catch((err) => {
     console.log(err.message);
   });
 
-  //! Broadcast to comment service
-  axios.post("http://localhost:4001/events", event).catch((err) => {
-    console.log(err.message);
-  });
+  // //! Broadcast to comment service
+  // axios.post("http://localhost:4001/events", event).catch((err) => {
+  //   console.log(err.message);
+  // });
 
-  //! Broadcast to query service
-  axios.post("http://localhost:4002/events", event).catch((err) => {
-    console.log(err.message);
-  });
+  // //! Broadcast to query service
+  // axios.post("http://localhost:4002/events", event).catch((err) => {
+  //   console.log(err.message);
+  // });
 
-  //! Broadcast to moderation service
-  axios.post("http://localhost:4003/events", event).catch((err) => {
-    console.log(err.message);
-  });
+  // //! Broadcast to moderation service
+  // axios.post("http://localhost:4003/events", event).catch((err) => {
+  //   console.log(err.message);
+  // });
 
   res.send({ status: "OK" });
 });
 
 app.listen(4005, () => {
+  console.log('v3');
   console.log("Listening on 4005");
 });
