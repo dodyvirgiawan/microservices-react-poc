@@ -1,0 +1,22 @@
+# Goal: create an ingress controller service to distribute traffic to the appropriate pods.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-srv
+spec:
+  # tell which ingress to use (ingress-nginx)
+  ingressClassName: nginx
+  rules:
+    # since nginx can host many different app with different domains, we specify this as we only create 1 app with posts service exposed to outside world
+    # later, we modify our system host mapping config file (windows / mac os) so that posts.com redirect to our localhost.
+    - host: posts.com # this posts.com can be anything else, just to make sure we update the host file config in your OS system.
+      http:
+        paths:
+          # If outside access url path /posts, redirect to our posts cluster ip service
+          - path: /posts
+            pathType: Prefix
+            backend:
+              service:
+                name: posts-clusterip-srv
+                port:
+                  number: 4000

@@ -1,6 +1,6 @@
 # Goal: create deployment to create pods for posts service.
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: apps/v1 # about telling Kubernetes which API version to use (that have some kind of definitions of objects)
+kind: Deployment # telling Kubernetes what type of object you're defining (through the apiVersion you defined above)
 metadata:
   name: posts-depl
 spec:

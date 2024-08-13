@@ -9,7 +9,7 @@ This is a very basic proof-of-concept app for my learning in the implementation 
 
 
 ### Frontend (React.js)
-Client interacts to different backend microservices.
+Client is for the UI interface.
 - `client`: for user interfaces, using React.
 
 ### Backend (Node.js / Express.js)
@@ -52,9 +52,36 @@ Currently, the retry mechanism for synchronizing event is done as follows:
 
 ### Deployments (Docker, Kubernetes)
 
-This app has an `infra` folder that host all the YML configuration file for creating docker image & kubernetes deployment. Please refer to the `README.md` file inside the `infra folder`.
+This app has an `infra` folder that host all the YML configuration file for creating docker image & kubernetes deployment. Please refer to the `README.md` file inside the `infra folder` for notes.
 
-#### Notes
+
+#### Config Files (High Level View)
+
+There are multiple config files inside the `infra/k8s` folder. We will group them by Kubernetes object to see what config files are there.
+
+##### 1. Pod Object
+
+We don't directly create pod, however you can see `infra/k8s/old` folder on how to create a pod manually.
+
+##### 2. Deployment Object
+
+- Deployment: for managing pods.
+  - Resources that implement: `posts` `event-bus` `comments` `moderation` `query`
+
+##### 3. Service Object
+
+- ClusterIP: for inter-pods communication
+  - Resources that implement:`posts` `event-bus` `comments` `moderation` `query`
+
+- NodePort: for outside to pods communication
+  - Resource that implement: `posts`
+
+##### 4. Ingress & Load Balancer
+
+We use `ingress-nginx` for load balancer & ingress services. To install [click here](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
+
+
+### Notes
 - This is not a production grade code, as I don't implement best practice of microservices architecture just yet. Goal of this project aims to create a proof of concept of event-bus / event driven architecture.
 - There are no databases (only persists data in memory of each microservices).
 - This POC app is created alongside following [an Udemy course](https://www.udemy.com/course/microservices-with-node-js-and-react), thanks to Stephen Grider
