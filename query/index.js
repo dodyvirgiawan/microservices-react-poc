@@ -52,7 +52,7 @@ app.listen(4002, async () => {
 
   // ! TO handle sync-ing between event bus (if this query service once become offline)
   try {
-    const res = await axios.get("http://localhost:4005/events");
+    const res = await axios.get("http://event-bus-srv:4005/events");
  
     for (let event of res.data) {
       console.log("Processing event:", event.type);

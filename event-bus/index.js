@@ -22,24 +22,24 @@ app.post("/events", (req, res) => {
   });
 
   // //! Broadcast to comment service
-  // axios.post("http://localhost:4001/events", event).catch((err) => {
-  //   console.log(err.message);
-  // });
+  axios.post("http://comments-srv:4001/events", event).catch((err) => {
+    console.log(err.message);
+  });
 
   // //! Broadcast to query service
-  // axios.post("http://localhost:4002/events", event).catch((err) => {
-  //   console.log(err.message);
-  // });
+  axios.post("http://query-srv:4002/events", event).catch((err) => {
+    console.log(err.message);
+  });
 
   // //! Broadcast to moderation service
-  // axios.post("http://localhost:4003/events", event).catch((err) => {
-  //   console.log(err.message);
-  // });
+  axios.post("http://moderation-srv:4003/events", event).catch((err) => {
+    console.log(err.message);
+  });
 
   res.send({ status: "OK" });
 });
 
 app.listen(4005, () => {
-  console.log('v3');
+  console.log('v4');
   console.log("Listening on 4005");
 });
