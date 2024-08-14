@@ -29,7 +29,7 @@ Backend is divided into several microservices (see below). They communicate by u
 - `moderation`: microservices handling comment moderation (approved/rejected)
 
 
-As I learn gradually, I will implement more advanced and off-the-shelf tools. (for example like `Kafka, RabbitMQ` for the Event Bus implementation).
+As I learn gradually, I will implement more advanced and off-the-shelf tools. (for example like `NATS, Kafka, RabbitMQ` for the Event Bus implementation).
 
 #### Available Events
 
