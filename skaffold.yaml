@@ -1,0 +1,64 @@
+# Goal: Use skaffold to make our development easier (hot reload!)
+apiVersion: skaffold/v4beta11
+kind: Config
+# all the yaml file specified here will be auto modified (when we change, delete, etc)
+manifests: 
+  rawYaml:
+    - ./infra/k8s/*
+build:
+  local:
+    push: false # so that wont push to docker hub everytime we make changes
+  artifacts:
+    # tell skaffold everytime inside client folder change, tell skaffold to update our pod (without pushing to dockerhub)
+    - image: dodyvirgiawan/client
+      context: client # the project client directory
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          # everytime all .js file inside src folder change (inside client),
+          # will tell skaffold to just throw it inside our pod (dest .)
+          # --
+          # but outside of src directory, if anything change, skaffold will rebuild the image
+          - src: 'src/**/*.js'
+            dest: .
+    - image: dodyvirgiawan/comments
+      context: comments 
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js' # for the express js, only .js file change -> just update the pod. outside of JS changed -> rebuild image
+            dest: .
+    - image: dodyvirgiawan/event-bus
+      context: event-bus 
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: dodyvirgiawan/moderation
+      context: moderation 
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: dodyvirgiawan/posts
+      context: posts 
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .
+    - image: dodyvirgiawan/query
+      context: query 
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: '*.js'
+            dest: .

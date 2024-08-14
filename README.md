@@ -5,7 +5,7 @@
 ## Microservice, Event Driven Architecture
 
 
-This is a very basic proof-of-concept app for my learning in the implementation of event driven architecture for asynchronous communication between backend microservices.
+This is a very basic proof-of-concept app for my learning in the implementation of event driven architecture for asynchronous communication between backend microservices. I learn alongside following an online course.
 
 
 ### Frontend (React.js)
@@ -50,7 +50,7 @@ Currently, the retry mechanism for synchronizing event is done as follows:
 
 ---
 
-### Deployments (Docker, Kubernetes)
+### Deployments (Docker, Kubernetes, Skaffold)
 
 This app has an `infra` folder that host all the YML configuration file for creating docker image & kubernetes deployment. Please refer to the `README.md` file inside the `infra folder` for notes.
 
@@ -78,7 +78,8 @@ We don't directly create pod, however you can see `infra/k8s/old` folder on how 
 
 ##### 5. Others
 - We use `ingress-nginx` for load balancer & ingress services. To install [click here](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
-- For the client app (React.js), we also deploy into a separate pods.
+- For the client app (React.js), we also deploy into a separate pods. And we will run the react dev server.
+- For easier in development, `skaffold.yaml` is also provided. Make sure you install skaffold first before running `skaffold dev` through the root project directory.
 
 ####
 
@@ -86,4 +87,3 @@ We don't directly create pod, however you can see `infra/k8s/old` folder on how 
 ### Notes
 - This is not a production grade code, as I don't implement best practice of microservices architecture just yet. Goal of this project aims to create a proof of concept of event-bus / event driven architecture.
 - There are no databases (only persists data in memory of each microservices).
-- This POC app is created alongside following [an Udemy course](https://www.udemy.com/course/microservices-with-node-js-and-react), thanks to Stephen Grider
