@@ -20,7 +20,7 @@ Client is for the UI interface.
 - `client`: for user interfaces, using React.
 
 ### Backend (Node.js / Express.js)
-Backend is divided into several microservices (see below). They communicate by using Event Driven approach, where I create a simple implementation of event-bus (using express.js) that acts as a message broker.
+Backend is divided into several microservices (see below). They communicate by using Event Driven approach, where I create a simple home-made implementation of an event-bus (using express.js) that acts as a message broker.
 
 - `comments`: microservices handling comment.
 - `posts`: microservices handling posts.
@@ -61,6 +61,9 @@ Currently, the retry mechanism for synchronizing event is done as follows:
 
 This app has an `infra` folder that host all the YML configuration file for creating docker image & kubernetes deployment. Please refer to the `README.md` file inside the `infra folder` for notes.
 
+For easier development process, run the whole application inside Kubernetes (with their respective Docker containers) by using skaffold. 
+- `skaffold dev`
+
 
 #### Config Files (High Level View)
 
@@ -86,7 +89,6 @@ We don't directly create pod, however you can see `infra/k8s/old` folder on how 
 ##### 5. Others
 - We use `ingress-nginx` for load balancer & ingress services. To install [click here](https://kubernetes.github.io/ingress-nginx/deploy/#quick-start)
 - For the client app (React.js), we also deploy into a separate pods. And we will run the react dev server.
-- For easier in development, `skaffold.yaml` is also provided. Make sure you install skaffold first before running `skaffold dev` through the root project directory.
 
 ---
 ### Takeaways
@@ -106,7 +108,7 @@ We don't directly create pod, however you can see `infra/k8s/old` folder on how 
 - The current event bus is still premature (too many concurrency issues). Too many edge cases are still not considered. Example: what if an event that is supposed to occur after other event, showed up first. This can break our application.
 
 #### What's next? (for me, at least)
-From these pain points, I will continue the online course and try to build microservices architecture with production grade code and/or workflows.
+From these pain points, I will continue learning and try to build microservices architecture with production grade code, tools and workflows.
 
 ---
 
