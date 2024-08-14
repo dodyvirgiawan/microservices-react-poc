@@ -1,4 +1,6 @@
 # Goal: create an ingress controller service to distribute traffic to the appropriate pods.
+# Ingress: having some routing rules tied to nginx, so every request comes to k8s cluster will be handled by this ingress service
+#          and be routed off to appropriate service within our cluster
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
