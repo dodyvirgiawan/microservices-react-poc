@@ -1,5 +1,12 @@
 # Very Basic Microservices with React, Node.js & Express.js 
 
+
+#### Application Functional Requirements
+- User can create a post
+- User can comment on a post
+- User can view all the posts, and comments that belongs to the post.
+- If user comment a post with the word 'orange' it will be detected as rejected and will not show in the UI.
+
 ---
 
 ## Microservice, Event Driven Architecture
