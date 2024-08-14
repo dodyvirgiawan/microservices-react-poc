@@ -108,7 +108,7 @@ We don't directly create pod, however you can see `infra/k8s/old` folder on how 
 - The current event bus is still premature (too many concurrency issues). Too many edge cases are still not considered. Example: what if an event that is supposed to occur after other event, showed up first. This can break our application.
 
 #### What's next? (for me, at least)
-From these pain points, I will continue learning and try to build microservices architecture with production grade code, tools and workflows.
+From these pain points, I will continue learning and try to build microservices architecture with production grade code, tools and workflows. (Like NATS / Kafka)
 
 ---
 
